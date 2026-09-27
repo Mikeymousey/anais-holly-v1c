@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-paper: #f3eee6;
+  --color-ink: #241c17;
+  --color-mute: #5c534a;
+  --color-line: #ddd4c8;
+  --font-sans: var(--font-outfit), "Avenir Next", "Segoe UI", sans-serif;
+  --font-display: var(--font-fraunces), "Iowan Old Style", Palatino, "Palatino Linotype", serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: #f3eee6;
+}
+
+body {
+  background: #f3eee6;
+  color: #241c17;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: #e4d3c0;
+  color: #241c17;
+}
+
+:focus-visible {
+  outline: 1px solid #241c17;
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+@keyframes emerge {
+  from {
+    opacity: 0;
+    transform: translateY(1.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes photo-settle {
+  from {
+    transform: scale(1.075);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .emerge {
+      animation: emerge linear both;
+      animation-timeline: view();
+      animation-range: var(--range, entry 0% entry 42%);
+    }
+
+    .scale-photo {
+      animation: photo-settle linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 48%;
+    }
+  }
+}
